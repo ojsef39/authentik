@@ -32,7 +32,7 @@ await Promise.all([
     cp(resolve(authentikModulePath, "schema.yml"), resolve(staticDirectory, "schema.yml")),
 ]);
 
-const NodeEnvironment = process.env.NODE_ENV || "development";
+const NodeEnvironment = process.env.AK_DOCUSAURUS_ENV || process.env.NODE_ENV || "development";
 const production = NodeEnvironment === "production";
 
 /**
