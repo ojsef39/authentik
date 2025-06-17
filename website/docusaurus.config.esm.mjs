@@ -6,7 +6,10 @@
  * @import { BuildUrlValues } from "remark-github";
  */
 import { createDocusaurusConfig } from "@goauthentik/docusaurus-config";
+import { cp } from "node:fs/promises";
 import { createRequire } from "node:module";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import remarkDirective from "remark-directive";
 import remarkGithub, { defaultBuildUrl } from "remark-github";
 
@@ -16,6 +19,18 @@ import remarkSupportDirective from "./remark/support-directive.mjs";
 import remarkVersionDirective from "./remark/version-directive.mjs";
 
 const require = createRequire(import.meta.url);
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const staticDirectory = resolve(__dirname, "static");
+
+const authentikModulePath = resolve("..");
+
+await Promise.all([
+    cp(
+        resolve(authentikModulePath, "docker-compose.yml"),
+        resolve(staticDirectory, "docker-compose.yml"),
+    ),
+    cp(resolve(authentikModulePath, "schema.yml"), resolve(staticDirectory, "schema.yml")),
+]);
 
 const NodeEnvironment = process.env.NODE_ENV || "development";
 const production = NodeEnvironment === "production";
