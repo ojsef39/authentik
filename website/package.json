@@ -4,10 +4,11 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "build": "run-s build:api build:docusaurus",
+        "build": "sh ./build.sh",
         "build-bundled": "run-s build:api build:docusaurus",
+        "build:all": "run-s build:api build:docusaurus",
         "build:api": "docusaurus gen-api-docs all",
-        "build:docusaurus": "cross-env NODE_OPTIONS='--max_old_space_size=11264' docusaurus build",
+        "build:docusaurus": "docusaurus build",
         "deploy": "docusaurus deploy",
         "docusaurus": "docusaurus",
         "lint": "eslint --fix .",
