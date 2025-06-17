@@ -17,13 +17,29 @@ import remarkVersionDirective from "./remark/version-directive.mjs";
 
 const require = createRequire(import.meta.url);
 
+const NodeEnvironment = process.env.NODE_ENV || "development";
+const production = NodeEnvironment === "production";
+
 /**
  * Documentation site configuration for Docusaurus.
  */
 const config = createDocusaurusConfig({
     url: "https://docs.goauthentik.io",
     future: {
-        experimental_faster: true,
+        v4: {
+            removeLegacyPostBuildHeadAttribute: true,
+            useCssCascadeLayers: false,
+        },
+        experimental_faster: {
+            swcJsLoader: true,
+            rspackBundler: true,
+            lightningCssMinimizer: production,
+            swcJsMinimizer: production,
+            swcHtmlMinimizer: production,
+            ssgWorkerThreads: production,
+            mdxCrossCompilerCache: production,
+            rspackPersistentCache: production,
+        },
     },
     themes: ["@docusaurus/theme-mermaid", "docusaurus-theme-openapi-docs"],
     themeConfig: {
