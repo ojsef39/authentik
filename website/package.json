@@ -4,9 +4,9 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "build": "sh ./build.sh",
+        "build": "./build.sh",
         "build-bundled": "run-s build:api build:docusaurus",
-        "build:all": "run-s build:api build:docusaurus",
+        "build:all": "run-s build:docusaurus",
         "build:api": "docusaurus gen-api-docs all",
         "build:docusaurus": "docusaurus build",
         "deploy": "docusaurus deploy",
