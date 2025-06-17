@@ -7,7 +7,7 @@
         "build": "run-s build:api build:docusaurus",
         "build-bundled": "run-s build:api build:docusaurus",
         "build:api": "docusaurus gen-api-docs all",
-        "build:docusaurus": "cross-env NODE_OPTIONS='--max_old_space_size=65536' docusaurus build",
+        "build:docusaurus": "cross-env NODE_OPTIONS='--max_old_space_size=11264' docusaurus build",
         "deploy": "docusaurus deploy",
         "docusaurus": "docusaurus",
         "lint": "eslint --fix .",
